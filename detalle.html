@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <h2 id="post"></h2>
+    <hr>
+    <a href="index.html">return</a>
+    <script>
+        const localurl = new URL(window.location.href);
+        const parameter = localurl.searchParams;
+        const id = parameter.get('id');
+        const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+        fetch(url)
+            .then(Response => Response.json())
+            .then(post =>{
+                document.getElementById("title").innerHTML = post.title;
+                document.getElementById("post").innerHTML = post.body;
+            })
+    </script>
+</body>
+</html>
